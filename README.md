@@ -32,7 +32,13 @@ fetch('http://localhost:5000/print', {
 ```
 
 ### Derleme ve Dağıtım
-1.  **Exe Oluşturma:** Windows bir makinede `build.bat` dosyasını çalıştırın. Bu işlem `dist` klasörü içinde `GissPrintAgent.exe` dosyasını oluşturacaktır.
+1.  **Bağımlılıkları Kurma:** Eğer ilk kez derleme yapıyorsanız, terminalde şu komutu çalıştırın:
+    ```bash
+    python -m pip install -r requirements.txt
+    ```
+    *(Eğer `pip` komutu tanınmıyorsa `python -m pip` kullanmak daha güvenlidir.)*
+
+2.  **Exe Oluşturma:** Windows bir makinede `build.bat` dosyasını çalıştırın. Bu işlem `dist` klasörü içinde `GissPrintAgent.exe` dosyasını oluşturacaktır.
 2.  **Kullanıcıya Kurulum:**
     - Bir klasör oluşturun (örn: `C:\GissPrintAgent`).
     - `dist/GissPrintAgent.exe` dosyasını bu klasöre kopyalayın.
@@ -82,7 +88,13 @@ fetch('http://localhost:5000/print', {
 ```
 
 ### Building and Distribution
-1.  **Create Exe:** Run `build.bat` on a Windows machine. This will generate `GissPrintAgent.exe` inside the `dist` folder.
+1.  **Install Dependencies:** If you are building for the first time, run the following command in your terminal:
+    ```bash
+    python -m pip install -r requirements.txt
+    ```
+    *(Using `python -m pip` is more reliable if the `pip` command is not recognized.)*
+
+2.  **Create Exe:** Run `build.bat` on a Windows machine. This will generate `GissPrintAgent.exe` inside the `dist` folder.
 2.  **User Installation:**
     - Create a folder (e.g., `C:\GissPrintAgent`).
     - Copy `dist/GissPrintAgent.exe` to this folder.

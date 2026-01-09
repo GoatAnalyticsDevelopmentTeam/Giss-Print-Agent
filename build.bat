@@ -2,7 +2,7 @@
 echo Initializing Giss Print Agent Build Process...
 
 echo Installing requirements...
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 if %errorlevel% neq 0 (
     echo Failed to install requirements.
     pause
