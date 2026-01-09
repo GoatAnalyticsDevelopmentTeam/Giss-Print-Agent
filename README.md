@@ -7,6 +7,11 @@ Giss Print Agent, web uygulamalarından yerel yazıcılara doğrudan ve sessiz (
 ### Nedir?
 Bu araç, bilgisayarınızda arka planda çalışarak tarayıcıdan gelen yazdırma komutlarını alır ve Windows yazıcılarınıza iletir. Özellikle etiket yazdırma veya fatura kesme gibi süreçlerde hızı artırmak için tasarlanmıştır.
 
+### Gereksinimler
+- **İşletim Sistemi:** Windows 10 / 11
+- **Python:** 3.8 veya üzeri (Sadece geliştirme ve derleme için)
+- **Bağımlılık:** SumatraPDF (Portable sürüm)
+
 ### Nasıl Kullanılır?
 1.  `config.json` dosyasından portu ve güvenlik anahtarını (api_key) ayarlayın.
 2.  `GissPrintAgent.exe` dosyasını çalıştırın.
@@ -51,6 +56,11 @@ Giss Print Agent is a simple middleware that allows web applications to send sil
 
 ### What is it?
 It runs in the background on your computer, receiving print commands from the browser and forwarding them to Windows printers. It is designed to speed up processes like label or invoice printing.
+
+### Requirements
+- **Operating System:** Windows 10 / 11
+- **Python:** 3.8 or higher (Only for development and building)
+- **Dependency:** SumatraPDF (Portable version)
 
 ### How to Use?
 1.  Configure the port and security key (api_key) in `config.json`.
