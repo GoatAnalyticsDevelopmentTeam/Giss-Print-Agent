@@ -10,7 +10,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-pyinstaller --version >nul 2>&1
+python -m PyInstaller --version >nul 2>&1
 if %errorlevel% neq 0 (
     echo PyInstaller is not installed.
     pause
@@ -18,7 +18,7 @@ if %errorlevel% neq 0 (
 )
 
 echo Building GissPrintAgent.exe...
-pyinstaller --onefile --noconsole --name GissPrintAgent src/main.py
+python -m PyInstaller --onefile --noconsole --name GissPrintAgent src/main.py
 
 echo.
 echo Build complete! The executable is in the 'dist' folder.

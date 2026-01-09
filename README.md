@@ -33,12 +33,11 @@ fetch('http://localhost:5000/print', {
 
 ### Derleme ve Dağıtım
 1.  **Exe Oluşturma:** Windows bir makinede `build.bat` dosyasını çalıştırın. Bu işlem bağımlılıkları otomatik kuracak ve `dist` klasörü içinde `GissPrintAgent.exe` dosyasını oluşturacaktır.
-2.  **Kullanıcıya Kurulum:**
-    - Bir klasör oluşturun (örn: `C:\GissPrintAgent`).
-    - `dist/GissPrintAgent.exe` dosyasını bu klasöre kopyalayın.
-    - İndirdiğiniz `SumatraPDF.exe` dosyasını da aynı klasöre koyun.
-    - `config.json` dosyasını da yanlarına ekleyerek ayarlarınızı yapın.
-3.  **Çalıştırma:** `GissPrintAgent.exe` dosyasını çalıştırdığınızda servis hazır hale gelecektir.
+2.  **Paketleme:** Müşterinize göndermek için bir klasör oluşturun ve içine şu 3 dosyayı koyun:
+    - `GissPrintAgent.exe` (dist klasöründen)
+    - `SumatraPDF.exe` (ana dizinden)
+    - `config.json` (ana dizinden)
+3.  **Dağıtım:** Bu klasörü ZIP haline getirerek müşterinize iletebilirsiniz. Müşteriniz ZIP'i çıkartıp `GissPrintAgent.exe`'yi çalıştırması yeterlidir.
 
 **Önemli:** Yazdırma işleminin çalışması için `SumatraPDF.exe` dosyası uygulama ile aynı klasörde bulunmalıdır.
 - [SumatraPDF Portable İndir](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
@@ -83,12 +82,11 @@ fetch('http://localhost:5000/print', {
 
 ### Building and Distribution
 1.  **Create Exe:** Run `build.bat` on a Windows machine. This will automatically install dependencies and generate `GissPrintAgent.exe` inside the `dist` folder.
-2.  **User Installation:**
-    - Create a folder (e.g., `C:\GissPrintAgent`).
-    - Copy `dist/GissPrintAgent.exe` to this folder.
-    - Place the downloaded `SumatraPDF.exe` in the same folder.
-    - Add `config.json` to the same folder and adjust your settings.
-3.  **Run:** Execute `GissPrintAgent.exe` to start the service.
+2.  **Packaging:** Create a folder for your client and include these 3 files:
+    - `GissPrintAgent.exe` (from the dist folder)
+    - `SumatraPDF.exe` (from the root directory)
+    - `config.json` (from the root directory)
+3.  **Distribution:** ZIP this folder and send it to your client. The client just needs to extract the ZIP and run `GissPrintAgent.exe`.
 
 **Note:** `SumatraPDF.exe` must be in the same folder as the application for printing to work.
 - [Download SumatraPDF Portable](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
