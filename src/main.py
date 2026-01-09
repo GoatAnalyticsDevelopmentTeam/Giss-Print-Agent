@@ -35,6 +35,8 @@ config = load_config()
 
 @app.before_request
 def check_api_key():
+    if request.method == 'OPTIONS':
+        return None
     api_key = request.headers.get('X-Api-Key')
     if api_key != config.get('api_key'):
         return jsonify({"error": "Unauthorized"}), 401
