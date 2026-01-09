@@ -26,7 +26,16 @@ fetch('http://localhost:5000/print', {
 });
 ```
 
-**Not:** Yazdırma işleminin çalışması için `SumatraPDF.exe` dosyası uygulama ile aynı klasörde bulunmalıdır.
+### Derleme ve Dağıtım
+1.  **Exe Oluşturma:** Windows bir makinede `build.bat` dosyasını çalıştırın. Bu işlem `dist` klasörü içinde `GissPrintAgent.exe` dosyasını oluşturacaktır.
+2.  **Kullanıcıya Kurulum:**
+    - Bir klasör oluşturun (örn: `C:\GissPrintAgent`).
+    - `dist/GissPrintAgent.exe` dosyasını bu klasöre kopyalayın.
+    - İndirdiğiniz `SumatraPDF.exe` dosyasını da aynı klasöre koyun.
+    - `config.json` dosyasını da yanlarına ekleyerek ayarlarınızı yapın.
+3.  **Çalıştırma:** `GissPrintAgent.exe` dosyasını çalıştırdığınızda servis hazır hale gelecektir.
+
+**Önemli:** Yazdırma işleminin çalışması için `SumatraPDF.exe` dosyası uygulama ile aynı klasörde bulunmalıdır.
 - [SumatraPDF Portable İndir](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
 
 ### Gelecek Özellikler (Yol Haritası)
@@ -61,6 +70,15 @@ fetch('http://localhost:5000/print', {
     })
 });
 ```
+
+### Building and Distribution
+1.  **Create Exe:** Run `build.bat` on a Windows machine. This will generate `GissPrintAgent.exe` inside the `dist` folder.
+2.  **User Installation:**
+    - Create a folder (e.g., `C:\GissPrintAgent`).
+    - Copy `dist/GissPrintAgent.exe` to this folder.
+    - Place the downloaded `SumatraPDF.exe` in the same folder.
+    - Add `config.json` to the same folder and adjust your settings.
+3.  **Run:** Execute `GissPrintAgent.exe` to start the service.
 
 **Note:** `SumatraPDF.exe` must be in the same folder as the application for printing to work.
 - [Download SumatraPDF Portable](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
