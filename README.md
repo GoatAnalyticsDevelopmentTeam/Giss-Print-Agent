@@ -27,6 +27,7 @@ fetch('http://localhost:5000/print', {
 ```
 
 **Not:** Yazdırma işleminin çalışması için `SumatraPDF.exe` dosyası uygulama ile aynı klasörde bulunmalıdır.
+- [SumatraPDF Portable İndir](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
 
 ### Gelecek Özellikler (Yol Haritası)
 Bu proje geliştirmeye açıktır. İleride eklenmesi planlanan bazı özellikler:
@@ -62,6 +63,7 @@ fetch('http://localhost:5000/print', {
 ```
 
 **Note:** `SumatraPDF.exe` must be in the same folder as the application for printing to work.
+- [Download SumatraPDF Portable](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
 
 ### Future Features (Roadmap)
 This project is open for further development. Planned features include:
