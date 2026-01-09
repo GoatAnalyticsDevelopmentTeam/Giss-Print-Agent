@@ -1,66 +1,71 @@
 # Giss Print Agent
 
-A standalone client-side middleware to enable silent printing from web applications to local Windows printers.
+---
 
-## Overview
+Giss Print Agent, web uygulamalarından yerel yazıcılara doğrudan ve sessiz (diyalog penceresi olmadan) çıktı göndermenizi sağlayan basit bir ara katman yazılımıdır.
 
-This tool runs a lightweight Flask server on a Windows client machine. It accepts print requests (Base64 encoded PDFs) via a REST API and uses **SumatraPDF** to perform silent, background printing.
+### Nedir?
+Bu araç, bilgisayarınızda arka planda çalışarak tarayıcıdan gelen yazdırma komutlarını alır ve Windows yazıcılarınıza iletir. Özellikle etiket yazdırma veya fatura kesme gibi süreçlerde hızı artırmak için tasarlanmıştır.
 
-## Prerequisites
+### Nasıl Kullanılır?
+1.  `config.json` dosyasından portu ve güvenlik anahtarını (api_key) ayarlayın.
+2.  `GissPrintAgent.exe` dosyasını çalıştırın.
+3.  Aşağıdaki örnekteki gibi bir istek gönderin:
 
-1.  **Windows OS**: Required for `pywin32` and `SumatraPDF.exe`.
-2.  **SumatraPDF**: Download the portable version of `SumatraPDF.exe` and place it in the project root (during development) or in the same folder as the final `.exe`.
-3.  **Python 3.x**: Required for development and building.
+```javascript
+fetch('http://localhost:5000/print', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Api-Key': 'giss_secret_token'
+    },
+    body: JSON.stringify({
+        printer_name: 'Yazici_Adi',
+        pdf_data: 'Base64_PDF_Verisi'
+    })
+});
+```
 
-## Project Structure
+**Not:** Yazdırma işleminin çalışması için `SumatraPDF.exe` dosyası uygulama ile aynı klasörde bulunmalıdır.
 
-- `src/main.py`: Flask server entry point.
-- `requirements.txt`: Python dependencies.
-- `build.bat`: Windows batch script to build the standalone executable.
-- `README.md`: This documentation.
+### Gelecek Özellikler (Yol Haritası)
+Bu proje geliştirmeye açıktır. İleride eklenmesi planlanan bazı özellikler:
+- **RAW Yazdırma:** Zebra (ZPL) veya Fiş yazıcıları (ESC/POS) için doğrudan komut desteği.
+- **Kağıt Kaynağı Seçimi:** Yazıcının hangi tepsisinden (çekmecesinden) kağıt alacağının seçilebilmesi.
+- **HTTPS Desteği:** Güvenli bağlantı üzerinden iletişim.
+- **Kuyruk İzleme:** Yazdırma işlerinin durumunu takip etme.
 
-## Setup & Development
+---
 
-1.  Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-2.  Place `SumatraPDF.exe` in the root directory.
-3.  Run the server:
-    ```bash
-    python src/main.py
-    ```
-    The server listens on `http://127.0.0.1:5000`.
+Giss Print Agent is a simple middleware that allows web applications to send silent print jobs directly to local printers without user interaction.
 
-## Building the Executable
+### What is it?
+It runs in the background on your computer, receiving print commands from the browser and forwarding them to Windows printers. It is designed to speed up processes like label or invoice printing.
 
-To generate a standalone Windows executable:
+### How to Use?
+1.  Configure the port and security key (api_key) in `config.json`.
+2.  Run `GissPrintAgent.exe`.
+3.  Send a request as shown in the example below:
 
-1.  Run the build script:
-    ```batch
-    build.bat
-    ```
-2.  The output `GissPrintAgent.exe` will be in the `dist/` folder.
+```javascript
+fetch('http://localhost:5000/print', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Api-Key': 'giss_secret_token'
+    },
+    body: JSON.stringify({
+        printer_name: 'Printer_Name',
+        pdf_data: 'Base64_PDF_Data'
+    })
+});
+```
 
-## Distribution
+**Note:** `SumatraPDF.exe` must be in the same folder as the application for printing to work.
 
-When distributing to end-users, ensure they have:
-1.  `GissPrintAgent.exe`
-2.  `SumatraPDF.exe` (must be in the same folder as the agent)
-
-## API Reference
-
-### 1. List Printers
-- **Endpoint**: `GET /printers`
-- **Description**: Returns a JSON list of all installed printer names.
-
-### 2. Print Document
-- **Endpoint**: `POST /print`
-- **Payload**:
-    ```json
-    {
-        "printer_name": "HP_LaserJet_Pro",
-        "pdf_data": "JVBERi0xLjQKJ..."
-    }
-    ```
-- **Description**: Decodes the Base64 PDF and sends it to the specified printer silently.
+### Future Features (Roadmap)
+This project is open for further development. Planned features include:
+- **RAW Printing:** Direct command support for Zebra (ZPL) or Receipt printers (ESC/POS).
+- **Paper Tray Selection:** Ability to choose which printer tray/drawer to use for the job.
+- **HTTPS Support:** Communication over secure connections.
+- **Queue Monitoring:** Tracking the status of print jobs.
