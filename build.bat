@@ -18,7 +18,7 @@ if %errorlevel% neq 0 (
 )
 
 echo Building GissPrintAgent.exe...
-python -m PyInstaller --onefile --noconsole --name GissPrintAgent src/main.py
+python -m PyInstaller --onefile --noconsole --add-data "src/icon.png;src" --name GissPrintAgent src/main.py
 
 echo.
 echo Build complete! The executable is in the 'dist' folder.

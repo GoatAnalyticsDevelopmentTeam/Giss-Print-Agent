@@ -93,7 +93,25 @@ def print_pdf():
             except Exception as cleanup_error:
                 print(f"Error deleting temp file: {cleanup_error}")
 
-def create_image():
+def get_resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+def get_icon_image():
+    icon_path = get_resource_path(os.path.join("src", "icon.png"))
+    if os.path.exists(icon_path):
+        try:
+            return Image.open(icon_path)
+        except Exception as e:
+            print(f"Error loading icon: {e}")
+    
+    # Fallback to generated image if file not found
     width = 64
     height = 64
     color1 = "blue"
@@ -115,7 +133,7 @@ if __name__ == '__main__':
         server_thread = threading.Thread(target=run_server, daemon=True)
         server_thread.start()
         
-        icon = pystray.Icon("GissPrintAgent", create_image(), "Giss Print Agent", menu=pystray.Menu(
+        icon = pystray.Icon("GissPrintAgent", get_icon_image(), "Giss Print Agent", menu=pystray.Menu(
             pystray.MenuItem("Quit", on_quit)
         ))
         icon.run()
