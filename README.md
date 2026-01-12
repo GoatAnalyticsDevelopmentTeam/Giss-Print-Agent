@@ -14,7 +14,7 @@ Bu araç, bilgisayarınızda arka planda çalışarak tarayıcıdan gelen yazdı
 
 ### Nasıl Kullanılır?
 1.  `config.json` dosyasından portu ve güvenlik anahtarını (api_key) ayarlayın.
-2.  `GissPrintAgent.exe` dosyasını çalıştırın.
+2.  `GissPrintAgent.exe` dosyasını çalıştırın. Uygulama sağ altta (system tray) simge durumunda çalışacaktır.
 3.  Aşağıdaki örnekteki gibi bir istek gönderin:
 
 ```javascript
@@ -38,6 +38,12 @@ fetch('http://localhost:5000/print', {
     - `SumatraPDF.exe` (ana dizinden)
     - `config.json` (ana dizinden)
 3.  **Dağıtım:** Bu klasörü ZIP haline getirerek müşterinize iletebilirsiniz. Müşteriniz ZIP'i çıkartıp `GissPrintAgent.exe`'yi çalıştırması yeterlidir.
+
+### Otomatik Başlatma (Windows)
+Uygulamanın bilgisayar açıldığında otomatik çalışması için:
+1.  `GissPrintAgent.exe` dosyasına sağ tıklayıp **Kısayol oluştur** deyin.
+2.  `Windows + R` tuşlarına basıp `shell:startup` yazın ve Enter'a basın.
+3.  Oluşturduğunuz kısayolu açılan **Başlangıç** klasörünün içine kopyalayın.
 
 **Önemli:** Yazdırma işleminin çalışması için `SumatraPDF.exe` dosyası uygulama ile aynı klasörde bulunmalıdır.
 - [SumatraPDF Portable İndir](https://www.sumatrapdfreader.org/download-free-pdf-viewer)
@@ -63,7 +69,7 @@ It runs in the background on your computer, receiving print commands from the br
 
 ### How to Use?
 1.  Configure the port and security key (api_key) in `config.json`.
-2.  Run `GissPrintAgent.exe`.
+2.  Run `GissPrintAgent.exe`. The application will run in the system tray (bottom right).
 3.  Send a request as shown in the example below:
 
 ```javascript
@@ -87,6 +93,12 @@ fetch('http://localhost:5000/print', {
     - `SumatraPDF.exe` (from the root directory)
     - `config.json` (from the root directory)
 3.  **Distribution:** ZIP this folder and send it to your client. The client just needs to extract the ZIP and run `GissPrintAgent.exe`.
+
+### Auto-start (Windows)
+To make the application start automatically when the computer boots:
+1.  Right-click `GissPrintAgent.exe` and select **Create shortcut**.
+2.  Press `Windows + R`, type `shell:startup`, and press Enter.
+3.  Copy the shortcut you created into the **Startup** folder that opens.
 
 **Note:** `SumatraPDF.exe` must be in the same folder as the application for printing to work.
 - [Download SumatraPDF Portable](https://www.sumatrapdfreader.org/download-free-pdf-viewer)

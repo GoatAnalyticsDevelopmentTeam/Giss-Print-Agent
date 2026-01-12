@@ -4,6 +4,7 @@ import base64
 import tempfile
 import subprocess
 import json
+import threading
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -11,6 +12,12 @@ try:
     import win32print
 except ImportError:
     win32print = None
+
+try:
+    import pystray
+    from PIL import Image, ImageDraw
+except ImportError:
+    pystray = None
 
 app = Flask(__name__)
 CORS(app)
@@ -86,5 +93,31 @@ def print_pdf():
             except Exception as cleanup_error:
                 print(f"Error deleting temp file: {cleanup_error}")
 
+def create_image():
+    width = 64
+    height = 64
+    color1 = "blue"
+    color2 = "white"
+    image = Image.new('RGB', (width, height), color1)
+    dc = ImageDraw.Draw(image)
+    dc.rectangle((width // 4, height // 4, width * 3 // 4, height * 3 // 4), fill=color2)
+    return image
+
+def on_quit(icon, item):
+    icon.stop()
+    os._exit(0)
+
+def run_server():
+    app.run(host='0.0.0.0', port=config.get('port', 5000), debug=False, use_reloader=False)
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=config.get('port', 5000), debug=False)
+    if pystray:
+        server_thread = threading.Thread(target=run_server, daemon=True)
+        server_thread.start()
+        
+        icon = pystray.Icon("GissPrintAgent", create_image(), "Giss Print Agent", menu=pystray.Menu(
+            pystray.MenuItem("Quit", on_quit)
+        ))
+        icon.run()
+    else:
+        app.run(host='0.0.0.0', port=config.get('port', 5000), debug=False)
